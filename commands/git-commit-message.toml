@@ -1,0 +1,25 @@
+# Command: /git-squash-message
+# Usage: /git-squash-message <N>
+# Example: /git-squash-message 3
+#
+
+label = 'Git, Code'
+
+description = "Regenerates a standardized commit message in Chinese based on the code changes from the last N Git commits."
+
+prompt = """
+请根据以下提供的 Git Diff 内容和提交信息格式规范，将最近 {{args}} 次提交的所有代码变更，压缩并生成一条全新的、高质量的 Git 提交消息。
+
+**核心要求:**
+1.  **语言:** 优先使用中文编写提交消息的标题和正文。
+2.  **格式:** 严格遵循提供的“提交信息格式规范”。
+3.  **内容:** 消息需要清晰、准确地概括所有代码变更。
+
+--- GIT DIFF (最近 {{args}} 次提交) ---
+!{git diff HEAD~{{args}}..HEAD}
+--- GIT DIFF END ---
+
+--- 提交信息格式规范 ---
+@{.gemini/GIT-COMMIT-MESSAGE.md}
+--- 规范结束 ---
+"""

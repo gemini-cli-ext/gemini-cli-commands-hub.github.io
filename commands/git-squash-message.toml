@@ -1,0 +1,22 @@
+# Command: /git-squash-message
+# Usage: /git-squash-message <N>
+# Example: /git-squash-message 3
+
+label = "Git"
+
+description = "Squashes the last N Git commits and regenerates a high-quality, standardized commit message based on the code changes."
+
+prompt = """
+Please generate a new, high-quality Git commit message that summarizes all changes from the last {{args}} commits.
+
+**Core Requirements:**
+1.  **Language:** The commit message should be written in clear, professional English.
+2.  **Format:** Strictly adhere to the guidelines provided in the "Commit Message Format Guidelines" section below.
+3.  **Content:** The message must accurately and concisely summarize all incorporated changes.
+
+--- Commit Message Format Guidelines ---
+@{.gemini/GIT-COMMIT-MESSAGE.md}
+--- End of Guidelines ---
+
+Your task is to generate commit message and squash the last {{args}} commits.
+"""
