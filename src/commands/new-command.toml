@@ -1,0 +1,75 @@
+# Command: /new-command
+# Usage: /new-command <description of the new command>
+# Example: /new-command create a git squash command that takes a number N as an argument, squashes the last N logs into a single commit, and regenerates the commit message based on the code changes
+
+label = "Core"
+
+description = "Automatically infers command name and parameters based on a natural language description to generate a new gemini-cli custom command."
+
+prompt = """
+# Task: Intelligently Generate gemini-cli Custom Commands
+
+You are a senior expert specializing in gemini-cli. Your task is to parse a user's natural language request, intelligently perform all the necessary steps, and generate a complete, correctly formatted gemini-cli custom command in TOML format.
+
+---
+## Technical Reference: gemini-cli Custom Command Specification
+
+When generating commands, you must strictly adhere to the following documentation. This is the sole basis for all your technical decisions.
+
+### TOML File Format
+- `prompt` (String, Required): The instructions sent to the model.
+- `description` (String, Optional): A single-line description displayed in the /help menu.
+
+### 1. Argument Handling: `{{args}}`
+If the prompt contains the `{{args}}` placeholder, the CLI will replace it with the text the user typed after the command.
+- **Raw Injection**: When used in the main body of the prompt, arguments are injected exactly as typed.
+- **Secure Shell Injection**: When used inside a `!{...}` block, `{{args}}` is automatically shell-escaped to prevent command injection vulnerabilities.
+
+### 2. Executing Shell Commands: `!{...}`
+You can use the `!{...}` syntax within the prompt to execute a shell command and inject its standard output.
+- **Purpose**: To gather dynamic context from the local environment, such as `git diff`, file lists, etc.
+- **Failure Handling**: If the command fails, its error output (stderr) and exit code are also injected, providing the model with the context of the failure.
+
+### 3. Injecting File Content: `@{...}`
+Use the `@{...}` syntax to directly embed the content of a file or a directory listing into the prompt.
+- **File Injection**: `@{path/to/file.txt}` is replaced with the content of that file.
+- **Directory Injection**: `@{path/to/dir}` is replaced with a listing of all files in that directory and its subdirectories (respecting `.gitignore`).
+- **Processing Order**: `@{...}` is processed before `!{...}` and `{{args}}`.
+
+---
+## Your Workflow
+
+1.  **Analyze Requirement**: Carefully read and understand the user's complete request, which will be passed to you as `{{args}}`.
+2.  **Infer Command Name**: Devise a concise and meaningful command name based on the user's intent. Use namespaces where appropriate (e.g., `git:commit`, `code:review`).
+3.  **Identify Parameters**: Determine if the command requires parameters. If the user's description mentions a variable part (e.g., "N logs", "a specific file"), you must use the `{{args}}` placeholder in the generated `prompt`.
+4.  **Leverage Advanced Features**: Creatively use `!{...}` and `@{...}` according to the technical reference to fulfill the user's request.
+5.  **Generate TOML Content**: Based on your analysis, generate a complete TOML file. Strictly follow the excellent examples below for formatting.
+6.  **Save Generated TOML File**: Save the generated TOML file to `$HOME/.gemini/commands/` folder.
+
+---
+## Excellent Examples
+
+### Example 1: Create a Git Squash Command with Parameters
+
+**User Input (content for `{{args}}`):**
+`I need a git squash command that can take a number N as an argument, squash the last N logs into one commit, and regenerate the commit message based on the diff.`
+
+**Your Ideal Output:**
+```toml
+# Command: /git:squash
+# Usage: /git:squash <N>
+# Example: /git:squash 3
+
+description = "Squashes the last N Git commits and regenerates a standardized commit message based on the changes."
+
+prompt = \"\"\"
+Based on the Git Diff from the last {{args}} commits provided below, and following our team's commit message format guidelines, please generate a new, high-quality Git commit message.
+
+--- Team Commit Message Guidelines (Refer to this file) ---
+@{.gemini/GIT-COMMIT-MESSAGE.md}
+--- End of Guidelines ---
+
+Your task is to generate only the final, complete commit message.
+\"\"\"
+```
+"""

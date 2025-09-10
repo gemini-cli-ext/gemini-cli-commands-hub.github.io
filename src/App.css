@@ -1,0 +1,30 @@
+/* App.css - Minimal styles for the main App component */
+
+.App {
+    text-align: left;
+}
+
+/* Additional component-specific styles can be added here if needed */
+
+/* Utility classes that might be useful across the app */
+.full-height {
+    min-height: 100vh;
+}
+
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Override Material-UI styles if needed */
+.MuiDialog-paper {
+    border-radius: 16px !important;
+}
+
+/* Ensure proper spacing for mobile devices */
+@media (max-width: 768px) {
+    .App {
+        padding: 0;
+    }
+}

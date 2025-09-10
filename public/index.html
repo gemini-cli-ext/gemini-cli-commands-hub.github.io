@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#6366f1" />
+
+        <!-- SEO Meta Tags -->
+        <title>Gemini CLI Commands Hub - AI-Powered Terminal Commands</title>
+        <meta
+            name="description"
+            content="Discover and share powerful AI-powered commands for your terminal workflow. Browse our curated collection of Gemini CLI commands to boost your productivity."
+        />
+        <meta
+            name="keywords"
+            content="gemini cli, ai commands, terminal, productivity, automation, developer tools, cli tools, command line, ai assistant"
+        />
+        <meta name="author" content="Gemini CLI Ext Community" />
+        <meta name="robots" content="index, follow" />
+        <link
+            rel="canonical"
+            href="https://gemini-cli-ext.github.io/commands/"
+        />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content="https://gemini-cli-ext.github.io/commands/"
+        />
+        <meta
+            property="og:title"
+            content="Gemini CLI Commands Hub - AI-Powered Terminal Commands"
+        />
+        <meta
+            property="og:description"
+            content="Discover and share powerful AI-powered commands for your terminal workflow. Browse our curated collection of Gemini CLI commands to boost your productivity."
+        />
+        <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+        <meta property="og:site_name" content="Gemini CLI Commands Hub" />
+        <meta property="og:locale" content="en_US" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+            property="twitter:url"
+            content="https://gemini-cli-ext.github.io/commands/"
+        />
+        <meta
+            property="twitter:title"
+            content="Gemini CLI Commands Hub - AI-Powered Terminal Commands"
+        />
+        <meta
+            property="twitter:description"
+            content="Discover and share powerful AI-powered commands for your terminal workflow. Browse our curated collection of Gemini CLI commands to boost your productivity."
+        />
+        <meta property="twitter:image" content="%PUBLIC_URL%/logo512.png" />
+        <meta name="twitter:creator" content="@gemini_cli" />
+
+        <!-- Apple Touch Icon -->
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="%PUBLIC_URL%/logo192.png"
+        />
+
+        <!-- Manifest -->
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+        <!-- Preconnect for better performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <!-- DNS Prefetch -->
+        <link rel="dns-prefetch" href="//api.github.com" />
+        <link rel="dns-prefetch" href="//github.com" />
+
+        <!-- Performance and UX -->
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Gemini CLI Hub" />
+        <meta name="application-name" content="Gemini CLI Hub" />
+        <meta name="msapplication-TileColor" content="#6366f1" />
+        <meta
+            name="msapplication-config"
+            content="%PUBLIC_URL%/browserconfig.xml"
+        />
+
+        <!-- Structured Data -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                "name": "Gemini CLI Commands Hub",
+                "description": "Discover and share powerful AI-powered commands for your terminal workflow",
+                "url": "https://gemini-cli-ext.github.io/commands/",
+                "applicationCategory": "DeveloperApplication",
+                "operatingSystem": "Cross-platform",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "author": {
+                    "@type": "Organization",
+                    "name": "Gemini CLI Ext Community"
+                }
+            }
+        </script>
+
+        <!-- Critical CSS for better performance -->
+        <style>
+            /* Critical above-the-fold styles */
+            body {
+                margin: 0;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    "Roboto",
+                    sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                background: #f8fafc;
+            }
+
+            .loading-screen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                transition: opacity 0.5s ease;
+            }
+
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+                border: 3px solid rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                border-top-color: white;
+                animation: spin 1s ease-in-out infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .loaded .loading-screen {
+                opacity: 0;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <noscript>
+            <div
+                style="
+                    padding: 2rem;
+                    text-align: center;
+                    font-family: sans-serif;
+                "
+            >
+                <h1>🚀 Gemini CLI Commands Hub</h1>
+                <p>You need to enable JavaScript to run this app.</p>
+                <p>
+                    This application provides a collection of AI-powered
+                    terminal commands to boost your productivity.
+                </p>
+                <p>
+                    Please enable JavaScript in your browser and reload the
+                    page.
+                </p>
+            </div>
+        </noscript>
+
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loading-screen">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Main App Container -->
+        <div id="root"></div>
+
+        <!-- Remove loading screen after app loads -->
+        <script>
+            window.addEventListener("load", function () {
+                setTimeout(function () {
+                    document.body.classList.add("loaded");
+                    setTimeout(function () {
+                        const loadingScreen =
+                            document.getElementById("loading-screen");
+                        if (loadingScreen) {
+                            loadingScreen.remove();
+                        }
+                    }, 500);
+                }, 100);
+            });
+        </script>
+
+        <!-- Service Worker Registration -->
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function () {
+                    navigator.serviceWorker
+                        .register("%PUBLIC_URL%/sw.js")
+                        .then(function (registration) {
+                            console.log("SW registered: ", registration);
+                        })
+                        .catch(function (registrationError) {
+                            console.log(
+                                "SW registration failed: ",
+                                registrationError,
+                            );
+                        });
+                });
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+# Command: /git-commit
+# Description: Analyzes staged changes and generates a commit message, then executes the commit.
+# Usage: /git-commit
+
+label = "Git"
+
+description = "Intelligently generates a git commit message conforming to the Conventional Commits specification based on 'git diff --staged' content and executes the commit directly."
+
+prompt = """
+You are an expert at writing git commit messages. Your task is to create a commit message in the Conventional Commits format based on the provided `git diff` output.
+
+**Conventional Commits Specification:**
+--- Commit Message Format Guidelines ---
+@{.gemini/GIT-COMMIT-MESSAGE.md}
+--- End of Guidelines ---
+
+If file `GIT-COMMIT-MESSAGE.md` missing, use the default format.
+
+- The format is `<type>[optional scope]: <description>`.
+- **type**: Must be one of `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `build`, `ci`, `revert`.
+- **description**: A short, imperative-tense summary of the change.
+
+**Staged Changes (from git diff --staged):**
+```diff
+!{git diff --staged}
+```
+
+**Your Task:**
+Based on the diff above, execute the final `git commit -m "..."` command.
+"""
